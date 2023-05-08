@@ -1,22 +1,30 @@
-import logo from './logo.svg';
+import { useState } from "react";
+import Home from "./scenes/Home.jsx"
+import AddFigure from "./scenes/AddFigure.jsx"
+import RevealFigure from "./scenes/RevealFigure.jsx"
+import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
 function App() {
+  const [figures, setFigures] =useState();
+ 
+
+
   return (
+    <main>
+      <h1>What they would look like in modern times</h1>
+      
+
+
+    </main>
+
+
+
+
+
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+       
       </header>
     </div>
   );
