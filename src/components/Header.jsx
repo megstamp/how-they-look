@@ -6,10 +6,10 @@ export default function Header() {
 
 return(
     <main>
-        <Container className="container-header">
-            <Row>
-                <Col>
-                <h1>What would these famous historical figures look like today?</h1>
+        <Container className="container-header">  
+            <Row className="d-flex justify-content-center">
+                <Col md={8}>
+                <h1 className="text-center">What would these famous historical figures look like today?</h1>
                 </Col>
             </Row>
         </Container>

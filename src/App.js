@@ -7,12 +7,15 @@ import NewFigure from "./components/NewFigure";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './styles/App.css';
 
-function App() {
+function App() {//main, parent component
   return (
     <>
     <div className="Body">
       <Header />
       <Categories />
+    
+    <br />
+
       <NewFigure/>
       <Footer />
     </div>

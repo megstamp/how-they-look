@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import Header from "./Header";
-import Categories from "./Categories";
 
 export default function NewFigure() {
   const [openModal, setOpenModal] = useState(false);
-  const [figure, setFigure] = useState();
-  const [bio, Setbio] = useState();
-  const [image, Setimage] = useState();
+  const [category, setCategory] = useState();
+  const [person, setPerson] = useState();
+  const [bio, setBio] = useState();
+  const [picture, setPicture] = useState();
 
   const handleOpen = () => {
     setOpenModal(true);
@@ -18,27 +17,21 @@ export default function NewFigure() {
   };
 
 
-useEffect(() => {
-  fetch("https://how-they-look-today-api.web.app/figures", {
+const addNew = () => {
+  fetch("https://how-they-look-today-api.web.app/figures", {//connecting to the backend
     method: "POST",
     headers: { 
         "Content-Type": "application/json",
-        "Authorization":
     },
-    body: JSON.stringify( {figure, bio, image} )
+    body: JSON.stringify( {person, category, bio, picture} )// this is what goes in the body of the request
 })
 .then(resp => resp.json())
 .then(data => {
-    if(data.message) {
-        alert(data.message)
-        return
-    }
-    setOpenModal(data)
-    navigate("/")
-})
-.catch(alert)
-}
+ // set your categories just like in useEffect in Categories.jsx
 
+})
+.finally(handleClose)
+}
 
   return (
     <>
@@ -58,33 +51,32 @@ useEffect(() => {
         <Form>
       <Form.Group className="mb-3" controlId="formNewFigure">
         <Form.Label>New Figure Name</Form.Label>
-        <Form.Control type="text" placeholder="Name" />
-        <Form.Text className="text-muted">
-        </Form.Text>
+        <Form.Control type="text" placeholder="Name" value={person} onChange={e => setPerson(e.target.value)}/>
       </Form.Group>
+
+      <Form.Select aria-label="Default select example" value={category} onChange={e => setCategory(e.target.value)}>
+      <option>Open this select menu</option>
+      <option >Artists</option>
+      <option >Tudors</option>
+      <option >Female Leaders</option>
+    </Form.Select>
 
       <Form.Group className="mb-3" controlId="formBio">
         <Form.Label>Add Short Biography</Form.Label>
-        <Form.Control type="password" placeholder="3-4 sentences" />
+        <Form.Control type="type" placeholder="3-4 sentences" value={bio} onChange={e => setBio(e.target.value)}/>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formImage">
         <Form.Label>Add Image</Form.Label>
-        <Form.Control type="text" placeholder="picture" />
+        <Form.Control type="text" placeholder="picture" value={picture} onChange={e => setPicture(e.target.value)}/>
       </Form.Group>
 
-      {/* <label htmlFor="poster">Poster
-                <input
-                    type="text"
-                    value={poster}
-                    onChange={ (e) => { setPoster(e.target.value)}} />
-            </label> */}
 
       </Form>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" type="submit" onClick={handleClose}>
+          <Button type="submit" change onClick={addNew}>
             Enter
           </Button>
         </Modal.Footer>
