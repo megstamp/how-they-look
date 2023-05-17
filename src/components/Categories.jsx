@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col, Modal, Button, Image, Card } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Modal,
+  Button,
+  Image,
+  Card,
+  Accordion,
+} from "react-bootstrap";
 
-
-export default function Categories() {
-  const [artists, setArtists] = useState();
-  const [tudors, setTudors] = useState();
-  const [femaleLeaders, setFemaleLeaders] = useState();
-  const [openModal, setOpenModal] = useState(false);
+export default function Categories({ artists, setArtists, tudors, setTudors, femaleLeaders, setFemaleLeaders }) { //passing props//
+  const [openModal, setOpenModal] = useState(false); // creating state variables//
   const [thisFigure, setThisFigure] = useState();
 
   const handleOpen = (person) => {
@@ -32,66 +37,105 @@ export default function Categories() {
   }, []);
 
   return (
-    <section className="category-page">
-      <Container className="card-container">
-        <Row className="text-center">
-          <Col sm={12} md={4}>
-            <Card sm={12} md={4} style={{ backgroundColor: '#ffffff66'}}>
-              <Card.Img variant="top" src="/images/bg_artisti_02.jpg" />
-              <Card.Body>
-                <Card.Title>Artists</Card.Title>
-                <Card.Text>
-                  {!artists
-                    ? "loading"
-                    : artists.map((artist) => (
-                        <Button
-                          class="bg-secondary"
-                          onClick={() => handleOpen(artist)}
-                          key={artist.id}
-                        >
-                          {artist.person}
-                        </Button>
-                      ))}
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
+    <>
+      <section className="category-page">
+         <Container className="card-container">
+             <Row className="d-flex flex-row text-center">
+            
+                <Col sm={12} md={4} className="category-accordian">
+                <Accordion>
+                <Accordion.Item  style={{ backgroundColor: '#ffffff99'}} eventKey="0">
+                  <Accordion.Header>
+                    <Image
+                      fluid
+                      src="/images/image-artist.webp"
+                      className="d-block"
+                    />
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <h3>Artists</h3>
+                    {!artists
+                      ? "loading"
+                      : artists.map((artist) => (
+                          <Button
+                            class="bg-secondary"
+                            onClick={() => handleOpen(artist)}
+                            key={artist.id}
+                          >
+                            {artist.person}
+                          </Button>
+                        ))}
+                  </Accordion.Body>
+                </Accordion.Item>
+                </Accordion>
+              </Col>
 
-          <Col sm={12} md={4}>
-            <h2>Tudors</h2>
-            {!tudors
-              ? "loading"
-              : tudors.map((tudor) => (
-                  <Button onClick={() => handleOpen(tudor)} key={tudor.id}>
-                    {tudor.person}
-                  </Button>
-                ))}
-          </Col>
+              <Col sm={12} md={4} className="category-accordian">
+                <Accordion>
+                <Accordion.Item style={{ backgroundColor: '#ffffff99'}} eventKey="0">
+                  <Accordion.Header>
+                    <Image
+                      fluid
+                      src="/images/image-tudors.webp"
+                      className="d-block"
+                    />
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <h3>Tudors</h3>
+                    {!tudors
+                      ? "loading"
+                      : tudors.map((tudor) => (
+                          <Button
+                            onClick={() => handleOpen(tudor)}
+                            key={tudor.id}
+                          >
+                            {tudor.person}
+                          </Button>
+                        ))}
+                  </Accordion.Body>
+                </Accordion.Item>
+                </Accordion>
+              </Col>
 
-          <Col sm={12} md={4}>
-            <h2>Female Leaders</h2>
-            {!femaleLeaders
-              ? "loading"
-              : femaleLeaders.map((femaleLeader) => (
-                  <Button
-                    onClick={() => handleOpen(femaleLeader)}
-                    key={femaleLeader.id}
-                  >
-                    {femaleLeader.person}
-                  </Button>
-                ))}
-          </Col>
-        </Row>
-        <Modal size="lg" show={openModal} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <h3>{thisFigure?.person}</h3>
-          </Modal.Header>
-          <Modal.Body>
-            <Image fluid src={thisFigure?.picture} alt={thisFigure?.name} />
-            <p className="fs-5 text-start mt-4 px-5">{thisFigure?.bio}</p>
-          </Modal.Body>
-        </Modal>
-      </Container>
+              <Col sm={12} md={4} className="category-accordian">
+                <Accordion>
+                <Accordion.Item style={{ backgroundColor: '#ffffff99'}} eventKey="0">
+                  <Accordion.Header>
+                    <Image
+                      fluid
+                      src="/images/image-women.webp"
+                      className="d-block"
+                    />
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <h3>Female Leaders</h3>
+                    {!femaleLeaders
+                        ? "loading"
+                        : femaleLeaders.map((femaleLeader) => (
+                            <Button
+                              onClick={() => handleOpen(femaleLeader)}
+                              key={femaleLeader.id}
+                            >
+                              {femaleLeader.person}
+                            </Button>
+                          ))}
+                  </Accordion.Body>
+                </Accordion.Item>
+                </Accordion>
+              </Col>
+
+          <Modal size="lg" show={openModal} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <h3>{thisFigure?.person}</h3>
+            </Modal.Header>
+            <Modal.Body>
+              <Image fluid src={thisFigure?.picture} alt={thisFigure?.name} />
+              <p className="fs-5 text-start mt-4 px-5">{thisFigure?.bio}</p>
+            </Modal.Body>
+          </Modal>
+            </Row>
+        </Container>
     </section>
+    </>
   );
 }

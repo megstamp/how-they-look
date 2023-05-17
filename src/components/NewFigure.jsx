@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 
-export default function NewFigure() {
+export default function NewFigure({ setArtists, setFemaleLeaders, setTudors}) { //destructuring props//
   const [openModal, setOpenModal] = useState(false);
   const [category, setCategory] = useState();
   const [person, setPerson] = useState();
@@ -28,7 +28,11 @@ const addNew = () => {
 .then(resp => resp.json())
 .then(data => {
  // set your categories just like in useEffect in Categories.jsx
-
+ setArtists(data.filter((person) => person.category === "Artists"));
+ setTudors(data.filter((person) => person.category === "Tudors"));
+ setFemaleLeaders(
+   data.filter((person) => person.category === "Female Leaders")
+ );
 })
 .finally(handleClose)
 }
