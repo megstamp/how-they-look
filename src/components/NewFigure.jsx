@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 
 export default function NewFigure({ setArtists, setFemaleLeaders, setTudors}) { //destructuring props//
@@ -24,26 +24,25 @@ const addNew = () => {
         "Content-Type": "application/json",
     },
     body: JSON.stringify( {person, category, bio, picture} )// this is what goes in the body of the request
-})
-.then(resp => resp.json())
-.then(data => {
- // set your categories just like in useEffect in Categories.jsx
- setArtists(data.filter((person) => person.category === "Artists"));
- setTudors(data.filter((person) => person.category === "Tudors"));
- setFemaleLeaders(
-   data.filter((person) => person.category === "Female Leaders")
- );
-})
-.finally(handleClose)
-}
+  })
+  .then(resp => resp.json())
+  .then(data => {
+    // set your categories just like in useEffect in Categories.jsx
+    setArtists(data.filter((person) => person.category === "Artists"));
+    setTudors(data.filter((person) => person.category === "Tudors"));
+    setFemaleLeaders(data.filter((person) => person.category === "Female Leaders"));
+  })
+  .catch(alert)
+  .finally(handleClose)
+  }
 
   return (
     <>
-    <div>
-        <Button variant="primary" onClick={handleOpen}>
-        Add Figure
-        </Button>
-    </div>    
+      <div>
+          <Button variant="primary" onClick={handleOpen}>
+          Add Figure
+          </Button>
+      </div>    
 
       <Modal show={openModal} onHide={handleClose}>
 
@@ -59,11 +58,11 @@ const addNew = () => {
       </Form.Group>
 
       <Form.Select aria-label="Default select example" value={category} onChange={e => setCategory(e.target.value)}>
-      <option>Open this select menu</option>
-      <option >Artists</option>
-      <option >Tudors</option>
-      <option >Female Leaders</option>
-    </Form.Select>
+        <option >Open this select menu</option>
+        <option >Artists</option>
+        <option >Tudors</option>
+        <option >Female Leaders</option>
+      </Form.Select>
 
       <Form.Group className="mb-3" controlId="formBio">
         <Form.Label>Add Short Biography</Form.Label>

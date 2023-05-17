@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './styles/App.css';
 
 function App() {//main, parent component
-  const [artists, setArtists] = useState();
+  const [artists, setArtists] = useState();//creating state variable to hold each category//
   const [tudors, setTudors] = useState();
   const [femaleLeaders, setFemaleLeaders] = useState();
   
@@ -28,11 +28,10 @@ function App() {//main, parent component
     
     <br />
 
-      <NewFigure
+      <NewFigure // sharing the state with Categories//
       setArtists={setArtists}
       setTudors={setTudors}
       setFemaleLeaders={setFemaleLeaders}/>
-
 
       <Footer />
     </div>

@@ -1,14 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Modal,
-  Button,
-  Image,
-  Card,
-  Accordion,
-} from "react-bootstrap";
+import {Container, Row, Col, Modal, Button, Image, Accordion} from "react-bootstrap";
 
 export default function Categories({ artists, setArtists, tudors, setTudors, femaleLeaders, setFemaleLeaders }) { //passing props//
   const [openModal, setOpenModal] = useState(false); // creating state variables//
@@ -23,16 +14,14 @@ export default function Categories({ artists, setArtists, tudors, setTudors, fem
     setOpenModal(false);
   };
 
-  useEffect(() => {
+  useEffect(() => {//GET request
     fetch("https://how-they-look-today-api.web.app/figures") //connecting to the backend
       .then((resp) => resp.json())
       .then((data) => {
         setArtists(data.filter((person) => person.category === "Artists"));
         setTudors(data.filter((person) => person.category === "Tudors"));
-        setFemaleLeaders(
-          data.filter((person) => person.category === "Female Leaders")
-        );
-      })
+        setFemaleLeaders(data.filter((person) => person.category === "Female Leaders"));
+    })
       .catch(alert); //filtering all the figures by category and putting them into the state variables
   }, []);
 
