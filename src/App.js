@@ -33,8 +33,8 @@ function App() {//main, parent component
       setTudors={setTudors}
       setFemaleLeaders={setFemaleLeaders}/>
 
-      <Footer />
     </div>
+      <Footer />
     </>
   );
 }

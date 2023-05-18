@@ -37,12 +37,10 @@ const addNew = () => {
   }
 
   return (
-    <>
-      <div>
-          <Button variant="primary" onClick={handleOpen}>
-          Add Figure
-          </Button>
-      </div>    
+    <> 
+    <div style={{ marginTop:40}}>
+      <button className="button-8" onClick={handleOpen} role="button">Add Figure</button>
+    </div>   
 
       <Modal show={openModal} onHide={handleClose}>
 
