@@ -1,7 +1,23 @@
 import { useEffect, useState } from "react";
-import {Container, Row, Col, Modal, Button, Image, Accordion} from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Modal,
+  Button,
+  Image,
+  Accordion,
+} from "react-bootstrap";
 
-export default function Categories({ artists, setArtists, tudors, setTudors, femaleLeaders, setFemaleLeaders }) { //passing props//
+export default function Categories({
+  artists,
+  setArtists,
+  tudors,
+  setTudors,
+  femaleLeaders,
+  setFemaleLeaders,
+}) {
+  //passing props//
   const [openModal, setOpenModal] = useState(false); // creating state variables//
   const [thisFigure, setThisFigure] = useState();
 
@@ -14,26 +30,48 @@ export default function Categories({ artists, setArtists, tudors, setTudors, fem
     setOpenModal(false);
   };
 
-  useEffect(() => {//GET request
+  const breakCategories = (data) => {
+    setArtists(data.filter((person) => person.category === "Artists"));
+    setTudors(data.filter((person) => person.category === "Tudors"));
+    setFemaleLeaders(
+      data.filter((person) => person.category === "Female Leaders")
+    );
+  };
+
+  useEffect(() => {
+    //GET request
     fetch("https://how-they-look-today-api.web.app/figures") //connecting to the backend
       .then((resp) => resp.json())
-      .then((data) => {
-        setArtists(data.filter((person) => person.category === "Artists"));
-        setTudors(data.filter((person) => person.category === "Tudors"));
-        setFemaleLeaders(data.filter((person) => person.category === "Female Leaders"));
-    })
+      .then(breakCategories)
       .catch(alert); //filtering all the figures by category and putting them into the state variables
   }, []);
+
+  const handleDelete = async () => {
+    const response = await fetch(
+      `https://how-they-look-today-api.web.app/figures/${thisFigure.id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    breakCategories(data);
+    handleClose();
+  };
 
   return (
     <>
       <section className="category-page">
-         <Container className="card-container">
-             <Row className="d-flex flex-row text-center">
-            
-                <Col sm={12} md={4} className="category-accordian">
-                <Accordion>
-                <Accordion.Item  style={{ backgroundColor: '#ffffff99'}} eventKey="0">
+        <Container className="card-container">
+          <Row className="d-flex flex-row text-center">
+            <Col sm={12} md={4} className="category-accordian">
+              <Accordion>
+                <Accordion.Item
+                  style={{ backgroundColor: "#ffffff99" }}
+                  eventKey="0"
+                >
                   <Accordion.Header>
                     <Image
                       fluid
@@ -56,12 +94,15 @@ export default function Categories({ artists, setArtists, tudors, setTudors, fem
                         ))}
                   </Accordion.Body>
                 </Accordion.Item>
-                </Accordion>
-              </Col>
+              </Accordion>
+            </Col>
 
-              <Col sm={12} md={4} className="category-accordian">
-                <Accordion>
-                <Accordion.Item style={{ backgroundColor: '#ffffff99'}} eventKey="0">
+            <Col sm={12} md={4} className="category-accordian">
+              <Accordion>
+                <Accordion.Item
+                  style={{ backgroundColor: "#ffffff99" }}
+                  eventKey="0"
+                >
                   <Accordion.Header>
                     <Image
                       fluid
@@ -83,12 +124,15 @@ export default function Categories({ artists, setArtists, tudors, setTudors, fem
                         ))}
                   </Accordion.Body>
                 </Accordion.Item>
-                </Accordion>
-              </Col>
+              </Accordion>
+            </Col>
 
-              <Col sm={12} md={4} className="category-accordian">
-                <Accordion>
-                <Accordion.Item style={{ backgroundColor: '#ffffff99'}} eventKey="0">
+            <Col sm={12} md={4} className="category-accordian">
+              <Accordion>
+                <Accordion.Item
+                  style={{ backgroundColor: "#ffffff99" }}
+                  eventKey="0"
+                >
                   <Accordion.Header>
                     <Image
                       fluid
@@ -99,32 +143,37 @@ export default function Categories({ artists, setArtists, tudors, setTudors, fem
                   <Accordion.Body>
                     <h3>Female Leaders</h3>
                     {!femaleLeaders
-                        ? "loading"
-                        : femaleLeaders.map((femaleLeader) => (
-                            <Button
-                              onClick={() => handleOpen(femaleLeader)}
-                              key={femaleLeader.id}
-                            >
-                              {femaleLeader.person}
-                            </Button>
-                          ))}
+                      ? "loading"
+                      : femaleLeaders.map((femaleLeader) => (
+                          <Button
+                            onClick={() => handleOpen(femaleLeader)}
+                            key={femaleLeader.id}
+                          >
+                            {femaleLeader.person}
+                          </Button>
+                        ))}
                   </Accordion.Body>
                 </Accordion.Item>
-                </Accordion>
-              </Col>
+              </Accordion>
+            </Col>
 
-          <Modal size="lg" show={openModal} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <h3>{thisFigure?.person}</h3>
-            </Modal.Header>
-            <Modal.Body>
-              <Image fluid src={thisFigure?.picture} alt={thisFigure?.name} />
-              <p className="fs-5 text-start mt-4 px-5">{thisFigure?.bio}</p>
-            </Modal.Body>
-          </Modal>
-            </Row>
+            <Modal size="lg" show={openModal} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <h3>{thisFigure?.person}</h3>
+              </Modal.Header>
+              <Modal.Body>
+                <Image fluid src={thisFigure?.picture} alt={thisFigure?.name} />
+                <p className="fs-5 text-start mt-4 px-5">{thisFigure?.bio}</p>
+              </Modal.Body>
+              <Modal.Footer show={openModal} onHide={handleClose}>
+                <Button type="submit" change onClick={handleDelete}>
+                  Delete
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </Row>
         </Container>
-    </section>
+      </section>
     </>
   );
 }
