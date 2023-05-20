@@ -73,18 +73,19 @@ export default function Categories({
                   eventKey="0"
                 >
                   <Accordion.Header>
-                    <Image
-                      fluid
-                      src="/images/image-artist.webp"
-                      className="d-block"
+                  <Image
+                    fluid
+                    src="/images/image-artist.webp"
+                    className="d-block"
                     />
                   </Accordion.Header>
+                  
                   <Accordion.Body>
                     <h3>Artists</h3>
                     {!artists
                       ? "loading"
                       : artists.map((artist) => (
-                          <Button
+                          <Button 
                             class="bg-secondary"
                             onClick={() => handleOpen(artist)}
                             key={artist.id}

@@ -1,3 +1,13 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+
+
+.container-header {
+  margin-top: 4%;
+  margin-bottom: 8%;
+}
 body {
   background-image: url(../../public/images/Historical\ Background_pic_preview.jpg);
   background-repeat: no-repeat;
@@ -8,15 +18,48 @@ body {
 }
 
 .Body {
-  min-height: 90vh;
+  min-height: 70vh;
   margin-bottom: 16px;
 }
 
-/* 
-<!-- HTML !-->
-<button class="button-8" role="button">Button 8</button> */
+/* <!-- HTML !-->
+<button class="button-43" role="button">Button 43</button>
 
-/* CSS */
+CSS */
+.button-8 {
+  background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-size: 16px;
+  font-style: "Castoro Titling";
+  justify-content: center;
+  padding: 1rem 1.75rem;
+  text-decoration: none;
+  width: 12%;
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-8:hover {
+  background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+}
+
+@media (min-width: 768px) {
+  .button-8 {
+    padding: 1rem 2rem;
+  }
+}
+
+
+
+/* 
+
+
 .button-8 {
   background-color: #e1ecf4;
   border-radius: 3px;
@@ -34,7 +77,7 @@ body {
   outline: none;
   padding: 8px .8em;
   position: relative;
-  text-align: center;
+  text-align: right;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
@@ -42,12 +85,13 @@ body {
   vertical-align: baseline;
   white-space: nowrap;
 }
-
+*/
 .button-8:hover,
 .button-8:focus {
   background-color: #b3d3ea;
   color: #2c5777;
 }
+
 
 .button-8:focus {
   box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
@@ -57,12 +101,8 @@ body {
   background-color: #a0c7e4;
   box-shadow: none;
   color: #2c5777;
-}
+} 
 
-.container-header {
-  margin-top: 5%;
-  margin-bottom: 8%;
-}
 
 footer {
   width:100%;
@@ -81,11 +121,13 @@ footer {
   padding: 10px;
   margin-bottom: 20px;
   font-size: large;
-}
+} 
 
 h1 {
-  font-weight: 700;
-}
+  font-family: "MedievalSharp";
+  font-weight: 900;
+  font-size: 56px; 
+ }
 
 
 

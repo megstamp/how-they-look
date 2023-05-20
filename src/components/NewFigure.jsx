@@ -39,14 +39,16 @@ export default function NewFigure({ setArtists, setFemaleLeaders, setTudors }) {
       .finally(handleClose);
   };
 
- 
+
   return (
     <>
-      <div style={{ marginTop: 40 }}>
+      <div>
         <button className="button-8" onClick={handleOpen} role="button">
-          Add Figure
+            Add Figure
         </button>
       </div>
+        
+      
 
       <Modal show={openModal} onHide={handleClose}>
         <Modal.Header className="header-text" closeButton>
@@ -98,7 +100,7 @@ export default function NewFigure({ setArtists, setFemaleLeaders, setTudors }) {
           </Form>
         </Modal.Body>
 
-        <Modal.Footer show={openModal} onHide={handleClose}>
+        <Modal.Footer>
           <Button type="submit" change onClick={addNew}>
             Enter
           </Button>
