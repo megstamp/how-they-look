@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Button, Modal, Form, Container, Row, Col } from "react-bootstrap";
 
 export default function NewFigure({ setArtists, setFemaleLeaders, setTudors }) {
   //destructuring props//
@@ -39,16 +39,19 @@ export default function NewFigure({ setArtists, setFemaleLeaders, setTudors }) {
       .finally(handleClose);
   };
 
-
   return (
     <>
-      <div>
-        <button className="button-8" onClick={handleOpen} role="button">
-            Add Figure
-        </button>
-      </div>
-        
-      
+      <section className="category-page">
+        <Container className="card-container">
+          <Row className="d-flex flex-row text-center">
+            <Col md={{ span: 3, offset: 9 }}>
+            <button className="button-8" onClick={handleOpen} role="button">
+              Add Figure
+            </button>
+            </Col>
+          </Row>
+        </Container>
+      </section>
 
       <Modal show={openModal} onHide={handleClose}>
         <Modal.Header className="header-text" closeButton>
