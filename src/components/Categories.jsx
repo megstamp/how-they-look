@@ -76,7 +76,7 @@ export default function Categories({
                   <Image
                     fluid
                     src="/images/image-artist.webp"
-                    className="d-block"
+                    className="scale d-block"
                     />
                   </Accordion.Header>
                   
@@ -108,7 +108,7 @@ export default function Categories({
                     <Image
                       fluid
                       src="/images/image-tudors.webp"
-                      className="d-block"
+                      className="scale d-block"
                     />
                   </Accordion.Header>
                   <Accordion.Body>
@@ -138,7 +138,7 @@ export default function Categories({
                     <Image
                       fluid
                       src="/images/image-women.webp"
-                      className="d-block"
+                      className="scale d-block"
                     />
                   </Accordion.Header>
                   <Accordion.Body>
