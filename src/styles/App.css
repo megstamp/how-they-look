@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;900&family=Playfair+Display+SC:wght@400;900&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Londrina+Solid:wght@100;300;400;900&family=Playfair+Display+SC:wght@400;900&display=swap');
 
 
 .container-header {
@@ -123,12 +121,16 @@ footer {
 } 
 
 h1 {
-  font-family: "Londrina Solid";
-  font-weight: bolder;
-  font-size: 48px; 
+  font-family: "Cinzel";
+  font-weight: 900;
+  font-size: 36x; 
  }
 
-h3 {
-  font-family: "Londrina Solid";
+ h3 {
+  font-family: "Cinzel";
   font-weight: 600;
+}
+
+p {
+  font-family: "Cinzel";
 }
