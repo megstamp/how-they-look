@@ -5,9 +5,9 @@ export default function NewFigure({ setArtists, setFemaleLeaders, setTudors }) {
   //destructuring props//
   const [openModal, setOpenModal] = useState(false);
   const [category, setCategory] = useState();
-  const [person, setPerson] = useState();
-  const [bio, setBio] = useState();
-  const [picture, setPicture] = useState();
+  const [person, setPerson] = useState("Cleopatra");
+  const [bio, setBio] = useState("Cleopatra VII, the final pharaoh of ancient Egypt, ruled with beauty, intelligence, and political acumen. She formed alliances with Julius Caesar and Mark Antony, strategically navigating the complexities of Roman politics. Despite her tragic end, Cleopatra's reign and captivating legacy have made her an enduring symbol of power and intrigue.");
+  const [picture, setPicture] = useState("https://firebasestorage.googleapis.com/v0/b/how-they-look-today-api.appspot.com/o/cleopatra.jpeg?alt=media");
 
   const handleOpen = () => {
     setOpenModal(true);
@@ -61,10 +61,10 @@ export default function NewFigure({ setArtists, setFemaleLeaders, setTudors }) {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="formNewFigure">
-              <Form.Label>New Figure Name</Form.Label>
+              <Form.Label>New Figure</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Name"
+                placeholder="Cleopatra"
                 value={person}
                 onChange={(e) => setPerson(e.target.value)}
               />
@@ -85,7 +85,7 @@ export default function NewFigure({ setArtists, setFemaleLeaders, setTudors }) {
               <Form.Label>Add Short Biography</Form.Label>
               <Form.Control
                 type="type"
-                placeholder="3-4 sentences"
+                placeholder="Cleopatra VII, the final pharaoh of ancient Egypt, ruled with beauty, intelligence, and political acumen. She formed alliances with Julius Caesar and Mark Antony, strategically navigating the complexities of Roman politics. Despite her tragic end, Cleopatra's reign and captivating legacy have made her an enduring symbol of power and intrigue."
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
               />
